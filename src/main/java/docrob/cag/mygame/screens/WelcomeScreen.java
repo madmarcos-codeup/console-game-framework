@@ -15,7 +15,7 @@ public class WelcomeScreen extends Screen {
     @Override
     public void show() {
         System.out.print("""
-    Welcome to a maze game!
+    Welcome to a console adventure game?
     
     Press Enter to continue.
     """);
