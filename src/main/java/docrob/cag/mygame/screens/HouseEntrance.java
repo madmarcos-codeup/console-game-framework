@@ -2,6 +2,9 @@ package docrob.cag.mygame.screens;
 
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenBuilder;
+import docrob.cag.framework.state.Game;
+import docrob.cag.framework.utils.ConsoleColors;
+import docrob.cag.mygame.characters.Player;
 
 public class HouseEntrance extends Screen {
     public HouseEntrance() {
@@ -10,7 +13,10 @@ public class HouseEntrance extends Screen {
 
     @Override
     public void show() {
-        System.out.println("You enter the spooky old house. A dark corridor leads north and a creaky staircase leads up. The front door is to the south.");
+        Player player = Game.getInstance().getStateItem("player", Player.class);
+        System.out.println(ConsoleColors.ANSI_CLEAR + player.getName() + " has entered THE SPOOKY HAUS!" +
+                "\n\nA dark corridor leads north and a creaky staircase leads up." +
+                "\nThe front door is to the south.");
         super.show();
     }
 

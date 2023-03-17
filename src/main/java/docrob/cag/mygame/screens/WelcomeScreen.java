@@ -4,7 +4,7 @@ import docrob.cag.framework.menu.MenuChoice;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenBuilder;
 import docrob.cag.framework.state.Game;
-import docrob.cag.framework.utils.Input;
+import docrob.cag.framework.utils.ConsoleColors;
 
 public class WelcomeScreen extends Screen {
 
@@ -14,11 +14,12 @@ public class WelcomeScreen extends Screen {
 
     @Override
     public void show() {
-        System.out.print("""
-    Welcome to a console adventure game?
-    
-    Press Enter to continue.
-    """);
+        System.out.print(ConsoleColors.ANSI_CLEAR + ConsoleColors.ANSI_PURPLE + "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" +
+    "\nX                                      X" +
+    "\nX" + ConsoleColors.ANSI_RESET + "      Welcome to SPOOKY HAUS!!1!     " + ConsoleColors.ANSI_PURPLE + " X" +
+    "\nX                                      X" +
+    "\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" +
+    "\n\n" + ConsoleColors.ANSI_RESET + "Press Enter to continue.");
     }
 
     @Override

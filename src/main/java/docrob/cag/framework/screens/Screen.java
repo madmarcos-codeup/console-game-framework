@@ -4,7 +4,6 @@ import docrob.cag.framework.menu.FlowAction;
 import docrob.cag.framework.menu.Menu;
 import docrob.cag.framework.menu.MenuChoice;
 import docrob.cag.framework.state.Game;
-import docrob.cag.framework.utils.Input;
 
 public abstract class Screen {
     private boolean showMenuEachIteration = true;
