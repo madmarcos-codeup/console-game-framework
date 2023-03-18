@@ -48,6 +48,11 @@ public abstract class Screen {
 
             choice = menu.getChoiceFromUser(Game.getInstance().getInput());
 
+            if(choice.isHidden()) {
+                System.out.println("That was not a valid choice!");
+                continue;
+            }
+
             // process user's choice
             choice.doAction();
 

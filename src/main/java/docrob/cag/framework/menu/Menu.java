@@ -69,7 +69,7 @@ public class Menu {
         }
 
         // did not select a valid choice num so do again
-        System.out.print("That was not a valid choice! ");
+        System.out.print("That was not a valid choice!\n");
         return getChoiceFromUser(input);
     }
 }

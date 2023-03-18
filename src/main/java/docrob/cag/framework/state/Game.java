@@ -3,6 +3,7 @@ package docrob.cag.framework.state;
 import docrob.cag.framework.utils.Input;
 
 import java.util.HashMap;
+import java.util.Random;
 
 // manages global game state info
 // and input
@@ -40,10 +41,16 @@ public class Game {
         return game;
     }
 
+    // return a random number between min and max (both inclusive)
+    public int getRandomInt(int min, int max) {
+        return (int) (Math.floor(Math.random() * max) + min);
+    }
+
     public static void main(String[] args) {
         String x = "howdy";
         Game.getInstance().addStateItem("1", x);
         String y = Game.getInstance().getStateItem("1", String.class);
         System.out.println(y);
     }
+
 }
