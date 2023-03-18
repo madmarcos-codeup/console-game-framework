@@ -2,6 +2,7 @@ package docrob.cag.mygame.screens;
 
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenBuilder;
+import docrob.cag.framework.utils.ConsoleColors;
 
 public class SecondFloorLanding extends Screen {
     public SecondFloorLanding() {
@@ -11,7 +12,8 @@ public class SecondFloorLanding extends Screen {
 
     @Override
     public void show() {
-        System.out.println("You are at the top of the stairs on the second floor. All of the doors on this floor are nailed shut. How sad. Stairs lead down to the entrance.");
+        System.out.println(ConsoleColors.ANSI_CLEAR + "You are at the top of the stairs on the second floor. All of the doors on this floor are nailed shut. How sad." +
+                "\n\nStairs lead down to the entrance.");
         super.show();
     }
 
