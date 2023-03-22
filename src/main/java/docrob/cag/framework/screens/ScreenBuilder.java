@@ -1,6 +1,7 @@
 package docrob.cag.framework.screens;
 
 import docrob.cag.framework.menu.FlowAction;
+import docrob.cag.framework.menu.MenuException;
 
 import java.util.HashMap;
 
@@ -27,6 +28,12 @@ public class ScreenBuilder {
 //            System.out.println(screenCache.get(screenClassName).getMenu().getChoices().size());
 ////            System.out.println(screen.get);
         }
-        return screenCache.get(screenClassName);
+        Screen cachedScreen = screenCache.get(screenClassName);
+        try {
+            cachedScreen.resetMenu();
+        } catch(MenuException e) {
+            // menu option may not yet be created so ignore exception if it happens
+        }
+        return cachedScreen;
     }
 }

@@ -18,6 +18,11 @@ public abstract class Screen {
         menu = new Menu();
     }
 
+    // this function resets screen items like menu item visibility for cached screens
+    public void resetMenu() {
+        // do nothing. sub-classes can override if they need
+    }
+
     public void setupMenu() {
 //        System.out.println("screen setup for " + this.getClass().getSimpleName());
     }

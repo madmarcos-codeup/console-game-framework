@@ -25,8 +25,12 @@ public class MyGame {
 
     }
 
+    public static Player getPlayer() {
+        return Game.getInstance().getStateItem("player", Player.class);
+    }
+
     public static void killPlayer() {
-        Player player = Game.getInstance().getStateItem("player", Player.class);
+        Player player = getPlayer();
         System.out.println("Removing player " + player.getName() + "...");
         Game.getInstance().removeStateItem("player");
     }

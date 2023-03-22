@@ -5,12 +5,21 @@ import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenBuilder;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
+import docrob.cag.mygame.MyGame;
 import docrob.cag.mygame.characters.Player;
 
 public class MainScreen extends Screen {
     private final String START_LABEL = "Start the adventure";
     public MainScreen() {
         super();
+    }
+
+    @Override
+    public void resetMenu() {
+        // hide dungeon start screen if you have not made a player
+        if(MyGame.getPlayer() == null) {
+            menu.getChoiceFromLabel(START_LABEL).setHidden(true);
+        }
     }
 
     @Override
