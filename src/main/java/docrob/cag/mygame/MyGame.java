@@ -3,13 +3,15 @@ package docrob.cag.mygame;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenBuilder;
 import docrob.cag.framework.screens.ScreenManager;
+import docrob.cag.framework.state.Game;
+import docrob.cag.mygame.characters.Player;
 import docrob.cag.mygame.screens.WelcomeScreen;
 
 public class MyGame {
     public static void main(String[] args) {
         // show welcome
         Screen screen = new WelcomeScreen();
-        ScreenBuilder.buildScreen(screen);
+        ScreenBuilder.makeFlowActionForScreen(screen);
         ScreenManager.setNextScreen(screen);
         // screen manager is now the main screen loop
         // when a menu action that leads to another screen is chosen:
@@ -21,6 +23,11 @@ public class MyGame {
         // i.e., the user has exited from the main screen
         System.out.println("Bye");
 
+    }
 
+    public static void killPlayer() {
+        Player player = Game.getInstance().getStateItem("player", Player.class);
+        System.out.println("Removing player " + player.getName() + "...");
+        Game.getInstance().removeStateItem("player");
     }
 }

@@ -5,7 +5,6 @@ import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenBuilder;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
-import docrob.cag.framework.utils.ConsoleColors;
 import docrob.cag.mygame.characters.Player;
 
 public class MainScreen extends Screen {
@@ -19,7 +18,7 @@ public class MainScreen extends Screen {
         super.setupMenu();
         menu.addChoice("Exit", ScreenManager.EXIT_APPLICATION_ACTION);
         menu.addChoice("Enter player name", createPlayer);
-        menu.addChoice(START_LABEL, ScreenBuilder.buildScreen(new HouseEntrance()), true);
+        menu.addChoice(START_LABEL, ScreenBuilder.makeFlowActionForScreen(new HouseEntrance()), true);
     }
 
     @Override
@@ -29,7 +28,9 @@ public class MainScreen extends Screen {
         if(player != null) {
             playerInfo = "\tPlayer: " + player.getName();
         }
-        System.out.println(ConsoleColors.ANSI_CLEAR + "\nMain Menu" + playerInfo);
+        //ConsoleColors.ANSI_CLEAR +
+        System.out.println("\nMain Menu" + playerInfo);
+
         super.show();
     }
 

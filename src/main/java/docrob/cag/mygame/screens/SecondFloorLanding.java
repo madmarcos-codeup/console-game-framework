@@ -20,7 +20,7 @@ public class SecondFloorLanding extends Screen {
     @Override
     public void setupMenu() {
         super.setupMenu();
-        menu.addChoice("Head down the stairs", ScreenBuilder.buildScreen(new HouseEntrance()));
+        menu.addChoice("Head down the stairs", ScreenBuilder.makeFlowActionForScreen(new HouseEntrance()));
     }
 
 }

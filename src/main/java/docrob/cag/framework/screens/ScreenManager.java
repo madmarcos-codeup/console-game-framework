@@ -3,6 +3,7 @@ package docrob.cag.framework.screens;
 import docrob.cag.framework.menu.FlowAction;
 import docrob.cag.framework.menu.MenuAction;
 import docrob.cag.framework.menu.MenuChoice;
+import docrob.cag.mygame.screens.MainScreen;
 
 public class ScreenManager {
     private static Screen nextScreen = null;
@@ -30,5 +31,12 @@ public class ScreenManager {
 
     public static void setNextScreen(Screen nextScreen) {
         ScreenManager.nextScreen = nextScreen;
+    }
+
+    // createNextScreen is for when you want to set the next screen but not via a menu choice (i.e., press 3 to go west)
+    // e.g., player has died from an action
+    public static void createNextScreen(Screen screen) {
+        screen = ScreenBuilder.getCachedScreen(screen);
+        ScreenManager.setNextScreen(screen);
     }
 }

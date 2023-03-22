@@ -53,4 +53,7 @@ public class Game {
         System.out.println(y);
     }
 
+    public void removeStateItem(String key) {
+        stateItems.remove(key);
+    }
 }

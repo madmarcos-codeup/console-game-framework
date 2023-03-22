@@ -8,6 +8,10 @@ import docrob.cag.framework.state.Game;
 public abstract class Screen {
     private boolean showMenuEachIteration = true;
 
+    // a screen can use this to exit the input handler
+    // screens can use this to transfer flow outside of FlowActions (e.g., the player dies)
+    private boolean readyToExit = false;
+
     protected Menu menu;
 
     public Screen() {
@@ -57,7 +61,7 @@ public abstract class Screen {
             choice.doAction();
 
             // if user quits then break
-            if(choice.getAction() instanceof FlowAction) {
+            if(readyToExit || choice.getAction() instanceof FlowAction) {
                 break;
             }
 
@@ -72,5 +76,21 @@ public abstract class Screen {
     public MenuChoice handleUser(boolean showMenuEachIteration) {
         this.showMenuEachIteration = showMenuEachIteration;
         return handleUser();
+    }
+
+    public boolean isReadyToExit() {
+        return readyToExit;
+    }
+
+    public void setReadyToExit(boolean readyToExit) {
+        this.readyToExit = readyToExit;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 }

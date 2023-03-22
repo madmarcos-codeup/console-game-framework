@@ -23,9 +23,9 @@ public class HouseEntrance extends Screen {
     @Override
     public void setupMenu() {
         super.setupMenu();
-        menu.addChoice("Run Away (out the front door)!!", ScreenBuilder.buildScreen(new MainScreen()));
-        menu.addChoice("Head down the corridor", ScreenBuilder.buildScreen(new Kitchen()));
-        menu.addChoice("Walk up the stairs", ScreenBuilder.buildScreen(new SecondFloorLanding()));
+        menu.addChoice("Run Away (out the front door)!!", ScreenBuilder.makeFlowActionForScreen(new MainScreen()));
+        menu.addChoice("Head down the corridor", ScreenBuilder.makeFlowActionForScreen(new Kitchen()));
+        menu.addChoice("Walk up the stairs", ScreenBuilder.makeFlowActionForScreen(new SecondFloorLanding()));
     }
 
 }

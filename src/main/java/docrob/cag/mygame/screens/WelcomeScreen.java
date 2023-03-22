@@ -27,7 +27,7 @@ public class WelcomeScreen extends Screen {
         // wait for user to press enter
         Game.getInstance().getInput().getString();
 
-        MenuChoice choice = new MenuChoice("", ScreenBuilder.buildScreen(new MainScreen()));
+        MenuChoice choice = new MenuChoice("", ScreenBuilder.makeFlowActionForScreen(new MainScreen()));
         choice.doAction();
         return choice;
     }
