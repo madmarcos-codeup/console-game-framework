@@ -5,6 +5,7 @@ import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenBuilder;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
+import docrob.cag.framework.utils.ConsoleColors;
 import docrob.cag.mygame.MyGame;
 import docrob.cag.mygame.characters.Player;
 
@@ -37,8 +38,7 @@ public class MainScreen extends Screen {
         if(player != null) {
             playerInfo = "\tPlayer: " + player.getName();
         }
-        //ConsoleColors.ANSI_CLEAR +
-        System.out.println("\nMain Menu" + playerInfo);
+        System.out.println(ConsoleColors.ANSI_CLEAR + "\nMain Menu" + playerInfo);
 
         super.show();
     }

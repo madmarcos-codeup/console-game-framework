@@ -3,6 +3,7 @@ package docrob.cag.framework.screens;
 import docrob.cag.framework.menu.FlowAction;
 import docrob.cag.framework.menu.MenuAction;
 import docrob.cag.framework.menu.MenuChoice;
+import docrob.cag.framework.menu.MenuException;
 import docrob.cag.mygame.screens.MainScreen;
 
 public class ScreenManager {
@@ -37,6 +38,11 @@ public class ScreenManager {
     // e.g., player has died from an action
     public static void createNextScreen(Screen screen) {
         screen = ScreenBuilder.getCachedScreen(screen);
+        try {
+            screen.resetMenu();
+        } catch(MenuException e) {
+            // menu option may not yet be created so ignore exception if it happens
+        }
         ScreenManager.setNextScreen(screen);
     }
 }

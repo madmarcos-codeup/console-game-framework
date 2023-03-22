@@ -11,6 +11,11 @@ public class ScreenBuilder {
 
     public static FlowAction makeFlowActionForScreen(Screen screen) {
         Screen nextScreen = getCachedScreen(screen);
+        try {
+            nextScreen.resetMenu();
+        } catch(MenuException e) {
+            // menu option may not yet be created so ignore exception if it happens
+        }
         return () -> {
             ScreenManager.setNextScreen(nextScreen);
         };
@@ -28,12 +33,6 @@ public class ScreenBuilder {
 //            System.out.println(screenCache.get(screenClassName).getMenu().getChoices().size());
 ////            System.out.println(screen.get);
         }
-        Screen cachedScreen = screenCache.get(screenClassName);
-        try {
-            cachedScreen.resetMenu();
-        } catch(MenuException e) {
-            // menu option may not yet be created so ignore exception if it happens
-        }
-        return cachedScreen;
+        return screenCache.get(screenClassName);
     }
 }

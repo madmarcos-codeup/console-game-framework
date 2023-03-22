@@ -19,6 +19,7 @@ public abstract class Screen {
     }
 
     // this function resets screen items like menu item visibility for cached screens
+    // currently gets called in create flow action and create next screen
     public void resetMenu() {
         // do nothing. sub-classes can override if they need
     }
