@@ -4,7 +4,6 @@ import docrob.cag.framework.menu.FlowAction;
 import docrob.cag.framework.menu.MenuAction;
 import docrob.cag.framework.menu.MenuChoice;
 import docrob.cag.framework.menu.MenuException;
-import docrob.cag.mygame.screens.MainScreen;
 
 public class ScreenManager {
     private static Screen nextScreen = null;
@@ -39,7 +38,7 @@ public class ScreenManager {
     public static void createNextScreen(Screen screen) {
         screen = ScreenBuilder.getCachedScreen(screen);
         try {
-            screen.resetMenu();
+            screen.resetScreen();
         } catch(MenuException e) {
             // menu option may not yet be created so ignore exception if it happens
         }

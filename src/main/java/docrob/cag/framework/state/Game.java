@@ -3,7 +3,6 @@ package docrob.cag.framework.state;
 import docrob.cag.framework.utils.Input;
 
 import java.util.HashMap;
-import java.util.Random;
 
 // manages global game state info
 // and input

@@ -12,13 +12,17 @@ public class ScreenBuilder {
     public static FlowAction makeFlowActionForScreen(Screen screen) {
         Screen nextScreen = getCachedScreen(screen);
         try {
-            nextScreen.resetMenu();
+            nextScreen.resetScreen();
         } catch(MenuException e) {
             // menu option may not yet be created so ignore exception if it happens
         }
         return () -> {
             ScreenManager.setNextScreen(nextScreen);
         };
+    }
+
+    public static void emptyCache() {
+        screenCache.clear();
     }
 
     public static Screen getCachedScreen(Screen screen) {

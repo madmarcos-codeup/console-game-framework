@@ -20,8 +20,8 @@ public abstract class Screen {
 
     // this function resets screen items like menu item visibility for cached screens
     // currently gets called in create flow action and create next screen
-    public void resetMenu() {
-        // do nothing. sub-classes can override if they need
+    public void resetScreen() {
+        readyToExit = false;
     }
 
     public void setupMenu() {
@@ -51,10 +51,10 @@ public abstract class Screen {
 
     // handleUser is responsible for responding to user interaction
     public MenuChoice handleUser() {
-        MenuChoice choice;
+        MenuChoice choice = null;
 
         // loop while user does not choose an action that changes screen flow
-        while(true) {
+        while(!readyToExit) {
 
             choice = menu.getChoiceFromUser(Game.getInstance().getInput());
 

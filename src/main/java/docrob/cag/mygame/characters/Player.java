@@ -10,5 +10,9 @@ import lombok.*;
 public class Player {
     private String name;
 
+    private boolean hasWinningItem;
 
+    public boolean hasWinningItem() {
+        return hasWinningItem;
+    }
 }

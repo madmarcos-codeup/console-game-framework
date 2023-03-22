@@ -1,5 +1,6 @@
 package docrob.cag.mygame.screens;
 
+import docrob.cag.framework.menu.FlowAction;
 import docrob.cag.framework.menu.MenuAction;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenBuilder;
@@ -16,7 +17,7 @@ public class MainScreen extends Screen {
     }
 
     @Override
-    public void resetMenu() {
+    public void resetScreen() {
         // hide dungeon start screen if you have not made a player
         if(MyGame.getPlayer() == null) {
             menu.getChoiceFromLabel(START_LABEL).setHidden(true);
@@ -45,11 +46,19 @@ public class MainScreen extends Screen {
 
     private MenuAction createPlayer = () -> {
         String name = Game.getInstance().getInput().getString("\nEnter your name: ");
-        Player player = new Player(name);
+        Player player = new Player(name, false);
         Game.getInstance().addStateItem("player", player);
+
+        System.out.println("Resetting game...");
+        ScreenBuilder.emptyCache();
 
         // as soon we create a player, show the start adventure choice
         menu.getChoiceFromLabel(START_LABEL).setHidden(false);
     };
+
+//    private FlowAction startGame = () -> {
+//        ScreenBuilder.emptyCache();
+//        ScreenManager.createNextScreen(new HouseEntrance());
+//    };
 
 }
