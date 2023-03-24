@@ -8,8 +8,8 @@ public class ErrorScreen extends Screen {
         System.out.println("Error!");
     }
 
-    @Override
-    public MenuChoice handleUser() {
-        return new MenuChoice("", ScreenManager.NO_ACTION);
-    }
+//    @Override
+//    public MenuChoice handleUser() {
+//        return new MenuChoice("", ScreenManager.NO_ACTION);
+//    }
 }
