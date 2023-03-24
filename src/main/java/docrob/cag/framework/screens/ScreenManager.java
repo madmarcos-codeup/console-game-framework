@@ -25,8 +25,12 @@ public class ScreenManager {
         if(screen.getScreenState() != ScreenState.ReadyToQueue) {
             throw new ScreenException(screen.getClass().getSimpleName() + " status is not ready to queue");
         }
-        screen.setScreenState(ScreenState.QueuedToShow);
-        pushScreen(screen);
+
+        // find the screen in the cache
+        Screen cacheScreen = ScreenCache.getCachedScreen(screen);
+
+        cacheScreen.setScreenState(ScreenState.QueuedToShow);
+        pushScreen(cacheScreen);
     }
 
     public static void start() {
@@ -53,9 +57,9 @@ public class ScreenManager {
         screens.add(screen);
     }
 
-    public static void setNextScreen(Screen nextScreen) {
-        ScreenManager.nextScreen = nextScreen;
-    }
+//    public static void setNextScreen(Screen nextScreen) {
+//        ScreenManager.nextScreen = nextScreen;
+//    }
 
     // createNextScreen is for when you want to set the next screen but not via a menu choice (i.e., press 3 to go west)
     // e.g., player has died from an action

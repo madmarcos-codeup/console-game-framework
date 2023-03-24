@@ -3,6 +3,7 @@ package docrob.cag.framework.screens;
 import docrob.cag.framework.menu.Menu;
 import docrob.cag.framework.menu.MenuChoice;
 import docrob.cag.framework.menu.MenuItem;
+import docrob.cag.framework.menu.NavMenuItem;
 import docrob.cag.framework.state.Game;
 import lombok.*;
 
@@ -58,6 +59,10 @@ public abstract class Screen {
             }
 
             selected.doIt();
+            // if selected item was a nav menu item then this screen will exit to move to the next screen
+            if(selected instanceof NavMenuItem) {
+                this.setScreenState(ScreenState.ReadyToExit);
+            }
         }
     }
 

@@ -1,5 +1,8 @@
 package docrob.cag.framework.menu;
 
+import docrob.cag.framework.screens.Screen;
+import docrob.cag.framework.screens.ScreenManager;
+import docrob.cag.framework.screens.ScreenState;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.Input;
 import lombok.Getter;
@@ -27,6 +30,14 @@ public class Menu {
         items.add(item);
     }
 
+    public void addItem(String label, Screen navToScreen) {
+
+        MenuItem item = new NavMenuItem(idCounter++, label, () -> {
+            navToScreen.setScreenState(ScreenState.ReadyToQueue);
+            ScreenManager.addScreen(navToScreen);
+        });
+        items.add(item);
+    }
     public MenuItem getSelectedItemFromUser(Input input) {
         int num = Game.getInstance().getInput().getInt("Enter your choice: ");
         // check if num is a valid menu choice

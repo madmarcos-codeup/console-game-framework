@@ -6,8 +6,13 @@ import docrob.cag.framework.state.Game;
 
 public class MainScreen extends Screen {
     public MainScreen() {
+    }
+
+    @Override
+    public void setup() {
+        super.setup();
         menu.addItem("Exit", exitProgram);
-//        menu.addItem("Thing 1", new LeftScreen());
+        menu.addItem("Thing 1", new LeftScreen());
 //        menu.addItem("Thing 2", new RightScreen());
     }
 
@@ -19,5 +24,7 @@ public class MainScreen extends Screen {
 
     private MenuItemMethod exitProgram = () -> {
         System.out.println("yo");
+
+        exit();
     };
 }
