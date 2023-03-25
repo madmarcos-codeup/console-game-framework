@@ -1,102 +1,74 @@
 package docrob.cag.framework.screens;
 
-import docrob.cag.framework.menu.FlowAction;
 import docrob.cag.framework.menu.Menu;
-import docrob.cag.framework.menu.MenuChoice;
+import docrob.cag.framework.menu.MenuItem;
+import docrob.cag.framework.menu.NavMenuItem;
 import docrob.cag.framework.state.Game;
+import lombok.*;
 
+@Getter
+@Setter
 public abstract class Screen {
-    private boolean showMenuEachIteration = true;
-
-    // a screen can use this to exit the input handler
-    // screens can use this to transfer flow outside of FlowActions (e.g., the player dies)
-    private boolean readyToExit = false;
 
     protected Menu menu;
 
+    protected ScreenState screenState;
+
+    protected boolean showMenuEachIteration;
+
     public Screen() {
         menu = new Menu();
+        screenState = ScreenState.ReadyToQueue;
+        showMenuEachIteration = true;
     }
 
-    // this function resets screen items like menu item visibility for cached screens
-    // currently gets called in create flow action and create next screen
-    public void resetScreen() {
-        readyToExit = false;
+    public void exit() {
+        if(screenState != ScreenState.Exited) {
+            screenState = ScreenState.ReadyToExit;
+        }
     }
 
-    public void setupMenu() {
-//        System.out.println("screen setup for " + this.getClass().getSimpleName());
+    // override to have a screen reset its stuff on a cache hit
+    public void reset() {
     }
 
-    // easy to use function that both shows and handles
-    public MenuChoice go() {
+    // override to setup a screen's stuff on the first cache write
+    public void setup() {
+    }
+
+    public void go() {
         show();
-        return handleUser();
+        handleInput();
     }
 
-    public MenuChoice go(boolean showMenuEachIteration) {
-        show();
-        return handleUser(showMenuEachIteration);
-    }
-
-    // show() is responsible for displaying the screen info
-    public void show() {
+    protected void show() {
         System.out.println();
-        for (MenuChoice choice : menu.getChoices()) {
-            if(!choice.isHidden()) {
-                System.out.println(choice);
+        for (MenuItem item : menu.getItems()) {
+            if(!item.isHidden()) {
+                System.out.println(item);
             }
         }
     }
 
-    // handleUser is responsible for responding to user interaction
-    public MenuChoice handleUser() {
-        MenuChoice choice = null;
+    protected void handleInput() {
+        while(screenState == ScreenState.Showing) {
+            MenuItem selected = menu.getSelectedItemFromUser(Game.getInstance().getInput());
 
-        // loop while user does not choose an action that changes screen flow
-        while(!readyToExit) {
-
-            choice = menu.getChoiceFromUser(Game.getInstance().getInput());
-
-            if(choice.isHidden()) {
+            if(selected.isHidden()) {
                 System.out.println("That was not a valid choice!");
                 continue;
             }
 
-            // process user's choice
-            choice.doAction();
-
-            // if user quits then break
-            if(readyToExit || choice.getAction() instanceof FlowAction) {
-                break;
+            selected.doIt();
+            // if selected item was a nav menu item then this screen will exit to move to the next screen
+            if(selected instanceof NavMenuItem) {
+                this.exit();
             }
 
             if(showMenuEachIteration) {
                 show();
             }
+
         }
-
-        return choice;
-    }
-
-    public MenuChoice handleUser(boolean showMenuEachIteration) {
-        this.showMenuEachIteration = showMenuEachIteration;
-        return handleUser();
-    }
-
-    public boolean isReadyToExit() {
-        return readyToExit;
-    }
-
-    public void setReadyToExit(boolean readyToExit) {
-        this.readyToExit = readyToExit;
-    }
-
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
     }
 }

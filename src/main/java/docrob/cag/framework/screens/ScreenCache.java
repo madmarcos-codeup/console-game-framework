@@ -1,25 +1,9 @@
 package docrob.cag.framework.screens;
 
-import docrob.cag.framework.menu.FlowAction;
-import docrob.cag.framework.menu.MenuException;
-
 import java.util.HashMap;
 
-public class ScreenBuilder {
-    // we can save screens in a cache to reuse them later
+public class ScreenCache {
     private static final HashMap<String, Screen> screenCache = new HashMap<>();
-
-    public static FlowAction makeFlowActionForScreen(Screen screen) {
-        Screen nextScreen = getCachedScreen(screen);
-        try {
-            nextScreen.resetScreen();
-        } catch(MenuException e) {
-            // menu option may not yet be created so ignore exception if it happens
-        }
-        return () -> {
-            ScreenManager.setNextScreen(nextScreen);
-        };
-    }
 
     public static void emptyCache() {
         screenCache.clear();
@@ -31,7 +15,7 @@ public class ScreenBuilder {
             if(!(screen instanceof NotCacheable)) {
                 screenCache.put(screenClassName, screen);
             }
-            screen.setupMenu();
+            screen.setup();
 //        } else {
 //            System.out.println("Found screen in cache: " + screenClassName);
 //            System.out.println(screenCache.get(screenClassName).getMenu().getChoices().size());
@@ -39,4 +23,5 @@ public class ScreenBuilder {
         }
         return screenCache.get(screenClassName);
     }
+
 }

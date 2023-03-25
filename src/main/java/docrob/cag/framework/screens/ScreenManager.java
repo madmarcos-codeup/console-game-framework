@@ -1,47 +1,49 @@
 package docrob.cag.framework.screens;
 
-import docrob.cag.framework.menu.FlowAction;
-import docrob.cag.framework.menu.MenuAction;
-import docrob.cag.framework.menu.MenuChoice;
-import docrob.cag.framework.menu.MenuException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScreenManager {
-    private static Screen nextScreen = null;
+    private static List<Screen> screens = new ArrayList<>();
 
-    public static final FlowAction EXIT_APPLICATION_ACTION = () -> {
-        // empty action function that just indicates the user selected an choice to return the current screen to the caller
-    };
+    public static void addScreen(Screen screen) {
+        if(screen.getScreenState() != ScreenState.ReadyToQueue) {
+            throw new ScreenException(screen.getClass().getSimpleName() + " status is not ready to queue");
+        }
 
-    public static final MenuAction NO_ACTION = () -> {
-        // empty action function that just indicates the user selected an choice to return the current screen to the caller
-    };
+        // find the screen in the cache
+        Screen cacheScreen = ScreenCache.getCachedScreen(screen);
+
+        cacheScreen.setScreenState(ScreenState.QueuedToShow);
+        pushScreen(cacheScreen);
+    }
 
     public static void start() {
-        MenuChoice choice;
-        do {
-            if(nextScreen == null) {
-                throw new ScreenException("Next screen has not been set!");
+        // loop until we run out of screens
+        // or are told to exit the app early?
+        while(true) {
+            if(screens.size() == 0) {
+                break;
             }
 
-            Screen currentScreen = nextScreen;
-            nextScreen = null;
-            choice = currentScreen.go();
-        } while(choice.getAction() != EXIT_APPLICATION_ACTION);
-    }
+            Screen screen = popScreen();
+            screen.setScreenState(ScreenState.Showing);
 
-    public static void setNextScreen(Screen nextScreen) {
-        ScreenManager.nextScreen = nextScreen;
-    }
-
-    // createNextScreen is for when you want to set the next screen but not via a menu choice (i.e., press 3 to go west)
-    // e.g., player has died from an action
-    public static void createNextScreen(Screen screen) {
-        screen = ScreenBuilder.getCachedScreen(screen);
-        try {
-            screen.resetScreen();
-        } catch(MenuException e) {
-            // menu option may not yet be created so ignore exception if it happens
+            screen.go();
+            screen.setScreenState(ScreenState.Exited);
         }
-        ScreenManager.setNextScreen(screen);
     }
+
+    private static Screen popScreen() {
+        return screens.remove(0);
+    }
+
+    private static void pushScreen(Screen screen) {
+        screens.add(screen);
+    }
+
+    public static void resetGame() {
+        ScreenCache.emptyCache();
+    }
+
 }
