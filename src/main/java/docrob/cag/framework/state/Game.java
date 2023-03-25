@@ -27,9 +27,6 @@ public class Game {
 
     public <T> T getStateItem(String key, Class<T> className) {
         Object o = stateItems.get(key);
-//        if(o == null || !(o instanceof className)) {
-//            throw new ClassCastException("o is not of type " + className.getName());
-//        }
         return (T) o;
     }
 

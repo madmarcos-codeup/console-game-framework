@@ -1,11 +1,8 @@
 package docrob.cag.mygame.screens;
 
-import docrob.cag.framework.menu.MenuChoice;
 import docrob.cag.framework.screens.Screen;
-import docrob.cag.framework.screens.ScreenBuilder;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
-import docrob.cag.framework.utils.ConsoleColors;
 
 public class WelcomeScreen extends Screen {
 

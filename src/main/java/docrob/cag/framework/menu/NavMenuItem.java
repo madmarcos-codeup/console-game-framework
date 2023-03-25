@@ -1,7 +1,5 @@
 package docrob.cag.framework.menu;
 
-import docrob.cag.framework.screens.Screen;
-
 public class NavMenuItem extends FunctionMenuItem {
 
 

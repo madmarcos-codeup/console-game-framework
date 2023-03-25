@@ -9,13 +9,13 @@ public class MistyRoom extends Screen {
     @Override
     public void setup() {
         super.setup();
-        menu.addItem("Go back", new EntranceScreen());
+        menu.addItem("Go west", new EntranceScreen());
         menu.addItem("Go north", new RoomOfDoom());
     }
 
     @Override
     protected void show() {
-        System.out.println("It is misty here. You can go back the way you came or head north.");
+        System.out.println("It is misty here. You can go back the way you came (west) or head north.");
 
         super.show();
     }
