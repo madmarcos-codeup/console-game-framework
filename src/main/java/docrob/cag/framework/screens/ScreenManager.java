@@ -57,6 +57,10 @@ public class ScreenManager {
         screens.add(screen);
     }
 
+    public static void resetGame() {
+        ScreenCache.emptyCache();
+    }
+
 //    public static void setNextScreen(Screen nextScreen) {
 //        ScreenManager.nextScreen = nextScreen;
 //    }

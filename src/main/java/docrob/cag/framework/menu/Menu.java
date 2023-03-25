@@ -38,6 +38,16 @@ public class Menu {
         });
         items.add(item);
     }
+    public void addItem(String label, Screen navToScreen, boolean hidden) {
+
+        MenuItem item = new NavMenuItem(idCounter++, label, () -> {
+            navToScreen.setScreenState(ScreenState.ReadyToQueue);
+            ScreenManager.addScreen(navToScreen);
+        });
+        item.setHidden(hidden);
+        items.add(item);
+    }
+
     public MenuItem getSelectedItemFromUser(Input input) {
         int num = Game.getInstance().getInput().getInt("Enter your choice: ");
         // check if num is a valid menu choice
@@ -52,6 +62,14 @@ public class Menu {
         return getSelectedItemFromUser(input);
     }
 
+    public MenuItem getChoiceFromLabel(String label) {
+        for (MenuItem item : items) {
+            if(item.getLabel().equals(label)) {
+                return item;
+            }
+        }
+        throw new MenuException("Invalid menu item requested: " + label);
+    }
 //
 //    public Menu(int idStartingVal) {
 //        this();

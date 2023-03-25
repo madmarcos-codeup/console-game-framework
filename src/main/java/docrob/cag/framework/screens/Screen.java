@@ -15,9 +15,12 @@ public abstract class Screen {
 
     protected ScreenState screenState;
 
+    protected boolean showMenuEachIteration;
+
     public Screen() {
         menu = new Menu();
         screenState = ScreenState.ReadyToQueue;
+        showMenuEachIteration = true;
     }
 
     public void exit() {
@@ -61,8 +64,13 @@ public abstract class Screen {
             selected.doIt();
             // if selected item was a nav menu item then this screen will exit to move to the next screen
             if(selected instanceof NavMenuItem) {
-                this.setScreenState(ScreenState.ReadyToExit);
+                this.exit();
             }
+
+            if(showMenuEachIteration) {
+                show();
+            }
+
         }
     }
 
