@@ -3,6 +3,7 @@ package docrob.cag.mygame.screens;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
+import docrob.cag.framework.utils.ConsoleColors;
 import docrob.cag.mygame.MyGame;
 
 public class VictoryRoom extends Screen {
@@ -13,6 +14,7 @@ public class VictoryRoom extends Screen {
 
     @Override
     public void show() {
+        System.out.println(ConsoleColors.ANSI_CLEAR);
         System.out.println("It's the Victory Room.");
     }
 

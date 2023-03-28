@@ -3,6 +3,7 @@ package docrob.cag.mygame.screens;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
+import docrob.cag.framework.utils.ConsoleColors;
 import docrob.cag.mygame.MyGame;
 
 public class EntranceScreen extends Screen {
@@ -19,6 +20,7 @@ public class EntranceScreen extends Screen {
 
     @Override
     protected void show() {
+        System.out.println(ConsoleColors.ANSI_CLEAR);
         System.out.println("You are at the entrance to a scary dungeon." +
                 "\nFrom here, you can go west or east.");
 

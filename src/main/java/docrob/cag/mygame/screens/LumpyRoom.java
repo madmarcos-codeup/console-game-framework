@@ -1,6 +1,7 @@
 package docrob.cag.mygame.screens;
 
 import docrob.cag.framework.screens.Screen;
+import docrob.cag.framework.utils.ConsoleColors;
 
 public class LumpyRoom extends Screen {
     public LumpyRoom() {
@@ -15,8 +16,9 @@ public class LumpyRoom extends Screen {
 
     @Override
     protected void show() {
+        System.out.println(ConsoleColors.ANSI_CLEAR);
         System.out.println("This room is kind of lumpy." +
-            "\nYou can go back the way you came, or go south to the treasure room.");
+            "\nYou can go back the way you came (east), or go south to the treasure room.");
 
         super.show();
     }
