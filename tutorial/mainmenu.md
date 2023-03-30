@@ -1,4 +1,4 @@
-# A Tutorial for DocRob's Old Fashioned Console Game Dev Framework
+# Creating the Main Menu Screen
 
 A good way to learn how to use a tool is to jump right in and build something [simple] with it. So let's do that.
 
@@ -78,4 +78,66 @@ public static void main(String[] args) {
 }
 ```
 
-[Next: the Main Menu screen](mainmenu.md)
+### The complete classes
+
+#### `WelcomeScreen.java`
+```java
+package docrob.cag.mygame.screens;
+
+import docrob.cag.framework.screens.Screen;
+import docrob.cag.framework.screens.ScreenManager;
+import docrob.cag.framework.state.Game;
+import docrob.cag.framework.utils.ConsoleColors;
+
+public class WelcomeScreen extends Screen {
+
+    public WelcomeScreen() {
+        super();
+    }
+
+    @Override
+    public void show() {
+        System.out.println(ConsoleColors.ANSI_CLEAR);
+        System.out.println("Welcome screen");
+    }
+
+    @Override
+    protected void handleInput() {
+        Game.getInstance().getInput().getString("Press Enter to continue.");
+
+        System.out.println("In the next lesson, we will add code here to navigate to the Main menu screen...");
+        
+        // since there is no input loop in this screen, 
+        // this method will exit and SM will move to the next screen if any
+        // in this case, SM start() will simply finish and the program will exit
+    }
+}
+```
+
+#### `MyGame.java`
+```java
+package docrob.cag.mygame;
+
+import docrob.cag.framework.screens.Screen;
+import docrob.cag.framework.screens.ScreenManager;
+import docrob.cag.framework.state.Game;
+import docrob.cag.mygame.characters.Player;
+import docrob.cag.mygame.screens.WelcomeScreen;
+
+public class MyGame {
+
+    public static void main(String[] args) {
+        // show welcome
+        Screen screen = new WelcomeScreen();
+        ScreenManager.addScreen(screen);
+        ScreenManager.start();
+
+        // when the screen manager returns, the app is ready to quit
+        // i.e., the user has exited from the main screen
+        System.out.println("Bye");
+
+    }
+}
+```
+
+[Next: the Main Menu screen](page2.md)
