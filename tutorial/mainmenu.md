@@ -68,7 +68,7 @@ private MenuItemMethod startAdventure = () -> {
 };
 ```
 
-Lastly, we need to override the `show` function that outputs the screen's description to the console. If you are using `Screen`'s built-in menu, then you should call `super.show()` before or after your screen's description, depending on whether you want the menu options to print before or after your screen's description. 
+Next, we need to override the `show` function that outputs the screen's description to the console. If you are using `Screen`'s built-in menu, then you should call `super.show()` before or after your screen's description, depending on whether you want the menu options to print before or after your screen's description. 
 
 For `MainScreen`, we also want to print the player's name to visually confirm that a player has been created. Note that we call `Game`'s `getStateItem` function to give us the player's object if it has been created. We tell `getStateItem` the data type of the object so that it may cast it for us before returning it.
 
@@ -86,7 +86,17 @@ protected void show() {
 }
 ```
 
-Here is the complete `MainScreen.java`
+Finally, we need to hook up the `WelcomeScreen` to transition to then `MainScreen` after the user presses the enter key. Here is the revised `handleInput` function.
+```java
+@Override
+protected void handleInput() {
+    Game.getInstance().getInput().getString("Press Enter to continue.");
+
+    ScreenManager.addScreen(new MainScreen());
+}
+```
+
+Below is the complete `MainScreen.java`
 
 ```java
 package docrob.cag.mygame.screens;
