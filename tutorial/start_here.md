@@ -80,6 +80,8 @@ public static void main(String[] args) {
 
 Below is the complete `WelcomeScreen.java`.
 
+Please note that the you will NOT be able to run the game UNTIL the completion of the next lesson: the Main Menu screen.
+
 ```java
 package docrob.cag.mygame.screens;
 

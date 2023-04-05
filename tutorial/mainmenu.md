@@ -115,6 +115,8 @@ protected void handleInput() {
 
 Below is the complete `MainScreen.java`.
 
+You should now be able to run the game, make a player by providing a player name, select "Start the adventure", and exit the game.
+
 ```java
 package docrob.cag.mygame.screens;
 
