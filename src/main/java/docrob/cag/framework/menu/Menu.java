@@ -26,6 +26,12 @@ public class Menu {
         items.add(item);
     }
 
+    public void addItem(String label, MenuItemMethod theMethod, boolean hidden) {
+        MenuItem item = new FunctionMenuItem(idCounter++, label, theMethod);
+        item.setHidden(hidden);
+        items.add(item);
+    }
+
     public void addItem(String label, Screen navToScreen) {
 
         MenuItem item = new NavMenuItem(idCounter++, label, () -> {

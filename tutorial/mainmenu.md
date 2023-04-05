@@ -38,7 +38,24 @@ private MenuItemMethod exitProgram = () -> {
 };
 ```
 
-The `createPlayer` function prompts and receives a player name from the user and creates a new `Player` object from the game's `Player` class. 
+The `createPlayer` function prompts and receives a player name from the user and creates a new `Player` object from the game's `Player` class. The `Player` class is a simple POJO that has the game-specific info that we want for keeping track of the user playing the game. For this tutorial, it will be just the player's `name`.
+
+`Player.java`
+```java
+package docrob.cag.mygame.characters;
+
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+public class Player {
+    private String name;
+
+}
+```
 
 Note that the `Player` class is part of this example game and not provided by the framework. If your game needs a data type to represent the user then feel free to create your own, or use the one provided below as a model.
 
@@ -53,7 +70,7 @@ Lastly, after the player is created and stored, we unhide the "Start the adventu
 ```java
 private MenuItemMethod createPlayer = () -> {
     String name = Game.getInstance().getInput().getString("\nEnter your name: ");
-    Player player = new Player(name, false);
+    Player player = new Player(name);
     Game.getInstance().addStateItem("player", player);
 
     menu.getChoiceFromLabel("Start the adventure").setHidden(false);
@@ -96,7 +113,7 @@ protected void handleInput() {
 }
 ```
 
-Below is the complete `MainScreen.java`
+Below is the complete `MainScreen.java`.
 
 ```java
 package docrob.cag.mygame.screens;
@@ -136,7 +153,7 @@ public class MainScreen extends Screen {
 
     private MenuItemMethod createPlayer = () -> {
         String name = Game.getInstance().getInput().getString("\nEnter your name: ");
-        Player player = new Player(name, false);
+        Player player = new Player(name);
         Game.getInstance().addStateItem("player", player);
 
         menu.getChoiceFromLabel("Start the adventure").setHidden(false);
@@ -152,4 +169,5 @@ public class MainScreen extends Screen {
     };
 }
 ```
+
 [Next: the adventure's starting screen](entrancescreen.md)
