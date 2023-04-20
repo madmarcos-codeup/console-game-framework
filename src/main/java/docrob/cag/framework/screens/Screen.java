@@ -65,7 +65,7 @@ public abstract class Screen {
                 this.exit();
             }
 
-            if(showMenuEachIteration) {
+            if(screenState == ScreenState.Showing && showMenuEachIteration) {
                 show();
             }
 

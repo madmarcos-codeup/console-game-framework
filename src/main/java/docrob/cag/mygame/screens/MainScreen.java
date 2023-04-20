@@ -9,16 +9,12 @@ import docrob.cag.mygame.characters.Player;
 
 public class MainScreen extends Screen {
 
-    public MainScreen() {
-        super();
-    }
-
     @Override
     public void setup() {
         super.setup();
         menu.addItem("Exit game", exitProgram);
         menu.addItem("Create player", createPlayer);
-        menu.addItem("Start the adventure", startAdventure, true);
+        menu.addItem("Start the adventure", new EntranceScreen(), true);
     }
 
     @Override

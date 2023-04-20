@@ -78,7 +78,7 @@ public static void main(String[] args) {
 }
 ```
 
-Below is the complete `WelcomeScreen.java`.
+Below are the complete `WelcomeScreen.java` and `MyGame.java`.
 
 Please note that the you will NOT be able to run the game UNTIL the completion of the next lesson: the Main Menu screen.
 
@@ -108,6 +108,29 @@ public class WelcomeScreen extends Screen {
 
         ScreenManager.addScreen(new MainScreen());
         // since there is no input loop in this screen, this method will exit and SM will move to MainScreen
+    }
+}
+```
+
+`MyGame.java`
+```java
+package docrob.cag.mygame;
+
+import docrob.cag.framework.screens.Screen;
+import docrob.cag.framework.screens.ScreenManager;
+import docrob.cag.mygame.screens.WelcomeScreen;
+
+public class MyGame {
+    public static void main(String[] args) {
+        // show welcome
+        Screen screen = new WelcomeScreen();
+        ScreenManager.addScreen(screen);
+        ScreenManager.start();
+
+        // when the screen manager returns, the app is ready to quit
+        // i.e., the user has exited from the main screen
+        System.out.println("Bye");
+
     }
 }
 ```
