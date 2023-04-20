@@ -9,7 +9,7 @@ public class EntranceScreen extends Screen {
     public void setup() {
         super.setup();
         menu.addItem("Run away!!", new MainScreen());
-        menu.addItem("Go west", westStub);
+        menu.addItem("Go west", new WestScreen());
         menu.addItem("Go east", new EastScreen());
     }
 
@@ -22,8 +22,4 @@ public class EntranceScreen extends Screen {
         super.show();
 
     }
-
-    private MenuItemMethod westStub = () -> {
-        System.out.println("TODO: go west");
-    };
 }
