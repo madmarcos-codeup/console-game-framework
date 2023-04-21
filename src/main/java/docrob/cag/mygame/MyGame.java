@@ -3,6 +3,7 @@ package docrob.cag.mygame;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
+import docrob.cag.mygame.characters.Goblin;
 import docrob.cag.mygame.characters.Player;
 import docrob.cag.mygame.screens.WelcomeScreen;
 
@@ -28,4 +29,13 @@ public class MyGame {
         Game.getInstance().removeStateItem("player");
         ScreenManager.resetGame();
     }
+
+    public static void initGame() {
+        Game.getInstance().addStateItem("goblin", new Goblin());
+    }
+
+    public static Goblin getGoblin() {
+        return Game.getInstance().getStateItem("goblin", Goblin.class);
+    }
+
 }

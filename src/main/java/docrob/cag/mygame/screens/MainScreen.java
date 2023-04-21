@@ -5,6 +5,7 @@ import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
+import docrob.cag.mygame.MyGame;
 import docrob.cag.mygame.characters.Player;
 
 public class MainScreen extends Screen {
@@ -14,7 +15,7 @@ public class MainScreen extends Screen {
         super.setup();
         menu.addItem("Exit game", exitProgram);
         menu.addItem("Create player", createPlayer);
-        menu.addItem("Start the adventure", new EntranceScreen(), true);
+        menu.addItem("Start the adventure", startAdventure, true);
     }
 
     @Override
@@ -43,6 +44,8 @@ public class MainScreen extends Screen {
     };
 
     private MenuItemMethod startAdventure = () -> {
-        System.out.println("TODO: start the adventure");
+        MyGame.initGame();
+        ScreenManager.addScreen(new EntranceScreen());
+        exit();
     };
 }
