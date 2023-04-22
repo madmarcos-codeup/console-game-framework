@@ -4,22 +4,22 @@ import docrob.cag.framework.menu.MenuItemMethod;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.utils.ConsoleColors;
 
-public class EntranceScreen extends Screen {
+public class EastScreen extends Screen {
     @Override
     public void setup() {
         super.setup();
-        menu.addItem("Run away!!", new MainScreen());
-        menu.addItem("Go west", new WestScreen());
-        menu.addItem("Go east", new EastScreen());
+        menu.addItem("Go west", new EntranceScreen());
+        menu.addItem("Go north", new NorthScreen());
     }
 
     @Override
     protected void show() {
         System.out.println(ConsoleColors.ANSI_CLEAR);
-        System.out.println("You are at the entrance to a scary maze." +
-                "\nFrom here, you can run out of the maze, go west, or go east.");
+        System.out.println("You are in the east part of the maze." +
+                "\nFrom here, you can go west to return to the entrance, or go north.");
 
         super.show();
 
     }
+
 }

@@ -9,21 +9,13 @@ import docrob.cag.mygame.MyGame;
 import docrob.cag.mygame.characters.Player;
 
 public class MainScreen extends Screen {
-    private final String START_LABEL = "Start the adventure";
-
-    public MainScreen() {
-        // if player is not present then reset the game
-        if(MyGame.getPlayer() == null) {
-            ScreenManager.resetGame();
-        }
-    }
 
     @Override
     public void setup() {
         super.setup();
         menu.addItem("Exit game", exitProgram);
         menu.addItem("Create player", createPlayer);
-        menu.addItem(START_LABEL, new EntranceScreen(), true);
+        menu.addItem("Start the adventure", startAdventure, true);
     }
 
     @Override
@@ -40,10 +32,10 @@ public class MainScreen extends Screen {
 
     private MenuItemMethod createPlayer = () -> {
         String name = Game.getInstance().getInput().getString("\nEnter your name: ");
-        Player player = new Player(name, false);
+        Player player = new Player(name);
         Game.getInstance().addStateItem("player", player);
 
-        menu.getChoiceFromLabel(START_LABEL).setHidden(false);
+        menu.getChoiceFromLabel("Start the adventure").setHidden(false);
     };
 
     private MenuItemMethod exitProgram = () -> {
@@ -51,4 +43,9 @@ public class MainScreen extends Screen {
         exit();
     };
 
+    private MenuItemMethod startAdventure = () -> {
+        MyGame.initGame();
+        ScreenManager.addScreen(new EntranceScreen());
+        exit();
+    };
 }

@@ -1,5 +1,6 @@
 package docrob.cag.framework.utils;
 
+// shamelessly borrowed and modified from https://www.w3schools.blog/ansi-colors-java
 public class ConsoleColors {
     public static final String ANSI_CLEAR = "\u001b[2J";
     public static final String ANSI_RESET = "\u001B[0m";
