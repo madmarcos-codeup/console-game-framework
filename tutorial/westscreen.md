@@ -56,8 +56,8 @@ Create a Goblin class. Let's think through the specification for the goblin:
 
 - The goblin can take two hits before dying
 - The player can take two hits before dying
-- It will persist even if you leave the screen
-- Once it is dead, it does not return
+- The goblin will persist even if you leave the screen
+- Once the goblin is dead, it does not return while you stay in the maze
 - If you leave the game (i.e., choose "0" from the entrance) then the goblin will respawn
 - If the player attacks the goblin, there is a 75% chance that the player hits the goblin, and a 25% chance that the goblin hits the player
 - When the goblin dies, the player will automatically receive the treasure needed to win the game.
