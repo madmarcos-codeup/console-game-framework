@@ -192,8 +192,73 @@ public class WestScreen extends Screen {
     };
 }
 ```
+
+Now, run the game and test attacking the goblin. Once the goblin dies, it should only respawn if the `Player` leaves the `EntranceScreen`.
+
 ---
 
 ### Taking damage and possibly dying
 
-Finally, let's enhance the `Player` object to track health. Just like the goblin, let's start with 10 health, and if the goblin hits us, we will lose 5 health. If the `Player` is hit twice (unlikely, but possible), then the `Player` will die and be sent back to the `MainScreen`.
+Let's enhance the `Player` object to track health. Just like the goblin, let's start with 10 health, and if the goblin hits us, we will lose 5 health. If the `Player` is hit twice (unlikely, but possible), then the `Player` will die and be sent back to the `MainScreen`.
+
+Let's also add a convenient function to apply damage to the `Player`'s health. The modified `Player` class looks like this:
+
+```java
+package docrob.cag.mygame.characters;
+
+import lombok.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+public class Player {
+    private String name;
+
+    private int health;
+
+    public Player(String name) {
+        this.name = name;
+        health = 10;
+    }
+
+    public boolean isAlive() {
+        return health > 0;
+    }
+
+    public void takeDamage(int damage) {
+        health -= damage;
+        if(health < 0) {
+            health = 0;
+        }
+    }
+}
+```
+
+Now we will modify the `WestScreen`'s `attackGoblin` method to damage the `Player` if the goblin is missed.
+
+```java
+private MenuItemMethod attackGoblin = () -> {
+    if(Game.getInstance().getRandomInt(1, 100) <= 75) {
+        System.out.println("You attack the goblin and HIT!");
+        MyGame.getGoblin().setHealth(MyGame.getGoblin().getHealth() - 5);
+        if(!MyGame.getGoblin().isAlive()) {
+            System.out.println("The goblin has died.");
+        }
+    } else {
+        System.out.println("You attack the goblin and MISS!");
+        MyGame.getPlayer().takeDamage(5);
+        if(!MyGame.getPlayer().isAlive()) {
+            System.out.println("You have died.");
+            Game.getInstance().getInput().getString("Press Enter to continue.");
+            MyGame.killPlayer();
+            ScreenManager.addScreen(new MainScreen());
+            exit();
+        }
+    }
+};
+```
+
+Run and test the game. You might change the value in `attackGoblin` from `75` to a smaller number like `10`. This will increase the likelihood that you will miss the goblin and be damaged. Once you feel the code is working, be sure to change that number back to `75`, unless you like restarting the game.
+

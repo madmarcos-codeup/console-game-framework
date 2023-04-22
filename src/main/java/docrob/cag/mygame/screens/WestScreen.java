@@ -2,6 +2,7 @@ package docrob.cag.mygame.screens;
 
 import docrob.cag.framework.menu.MenuItemMethod;
 import docrob.cag.framework.screens.Screen;
+import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
 import docrob.cag.mygame.MyGame;
@@ -40,6 +41,14 @@ public class WestScreen extends Screen {
             }
         } else {
             System.out.println("You attack the goblin and MISS!");
+            MyGame.getPlayer().takeDamage(5);
+            if(!MyGame.getPlayer().isAlive()) {
+                System.out.println("You have died.");
+                Game.getInstance().getInput().getString("Press Enter to continue.");
+                MyGame.killPlayer();
+                ScreenManager.addScreen(new MainScreen());
+                exit();
+            }
         }
     };
 }
