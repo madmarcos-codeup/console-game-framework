@@ -1,4 +1,4 @@
-# Creating the West screen
+# Winning the game
 
 In this screen, the player will fight with a monster (a goblin). The goblin does not provide much of a challenge. If the player defeats the goblin, the player receives the treasure needed to win the game. If the player is particularly unlucky, then the player dies.
 
