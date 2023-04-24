@@ -38,6 +38,10 @@ public class WestScreen extends Screen {
             MyGame.getGoblin().setHealth(MyGame.getGoblin().getHealth() - 5);
             if(!MyGame.getGoblin().isAlive()) {
                 System.out.println("The goblin has died.");
+                if(!MyGame.getPlayer().hasCrown()) {
+                    System.out.println("You retrieve THE Gaudy Crown of Victory from the goblin's twitching corpse.");
+                    MyGame.getPlayer().setHasCrown(true);
+                }
             }
         } else {
             System.out.println("You attack the goblin and MISS!");

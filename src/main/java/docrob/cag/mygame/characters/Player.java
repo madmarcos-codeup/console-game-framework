@@ -12,13 +12,20 @@ public class Player {
 
     private int health;
 
+    private boolean hasCrown;
+
     public Player(String name) {
         this.name = name;
         health = 10;
+        hasCrown = false;
     }
 
     public boolean isAlive() {
         return health > 0;
+    }
+
+    public boolean hasCrown() {
+        return hasCrown;
     }
 
     public void takeDamage(int damage) {
