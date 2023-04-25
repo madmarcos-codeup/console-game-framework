@@ -36,6 +36,11 @@ public abstract class Screen {
     public void setup() {
     }
 
+    // sets all menuitem.hidden to menuitem.defaultHidden
+    public void resetMenuOnGameStart() {
+        menu.resetMenuOnGameStart();
+    }
+
     public void go() {
         show();
         handleInput();

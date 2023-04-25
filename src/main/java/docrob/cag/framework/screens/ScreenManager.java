@@ -42,8 +42,16 @@ public class ScreenManager {
         screens.add(screen);
     }
 
-    public static void resetGame() {
+    public static void emptyCache() {
         ScreenCache.emptyCache();
     }
 
+    public static void resetScreens() {
+        // reset menu items on any resettable screen
+        for(Screen screen : screens) {
+            if(screen instanceof Resettable) {
+                screen.getMenu().resetMenuOnGameStart();
+            }
+        }
+    }
 }

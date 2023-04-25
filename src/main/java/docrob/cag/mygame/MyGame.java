@@ -27,11 +27,13 @@ public class MyGame {
     public static void killPlayer() {
         System.out.println("Removing player " + getPlayer().getName() + "...");
         Game.getInstance().removeStateItem("player");
-        ScreenManager.resetGame();
+        ScreenManager.emptyCache();
     }
 
     public static void initGame() {
+        ScreenManager.resetScreens(); // reset menus for all resettable screens
         Game.getInstance().addStateItem("goblin", new Goblin());
+        getPlayer().setHasCrown(false);
     }
 
     public static Goblin getGoblin() {

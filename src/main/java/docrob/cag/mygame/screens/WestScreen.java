@@ -1,13 +1,14 @@
 package docrob.cag.mygame.screens;
 
 import docrob.cag.framework.menu.MenuItemMethod;
+import docrob.cag.framework.screens.Resettable;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
 import docrob.cag.mygame.MyGame;
 
-public class WestScreen extends Screen {
+public class WestScreen extends Screen implements Resettable {
     @Override
     public void setup() {
         super.setup();
@@ -24,9 +25,6 @@ public class WestScreen extends Screen {
         if(MyGame.getGoblin().isAlive()) {
             System.out.println("\nThere is a goblin here. " + MyGame.getGoblin().toString());
             menu.getChoiceFromLabel("Smite the goblin").setHidden(false);
-        } else {
-            // goblin is not alive so hide the menu choice, just in case it was unhidden previously
-            menu.getChoiceFromLabel("Smite the goblin").setHidden(true);
         }
         super.show();
 
@@ -34,25 +32,38 @@ public class WestScreen extends Screen {
 
     private MenuItemMethod attackGoblin = () -> {
         if(Game.getInstance().getRandomInt(1, 100) <= 75) {
-            System.out.println("You attack the goblin and HIT!");
-            MyGame.getGoblin().setHealth(MyGame.getGoblin().getHealth() - 5);
-            if(!MyGame.getGoblin().isAlive()) {
-                System.out.println("The goblin has died.");
-                if(!MyGame.getPlayer().hasCrown()) {
-                    System.out.println("You retrieve THE Gaudy Crown of Victory from the goblin's twitching corpse.");
-                    MyGame.getPlayer().setHasCrown(true);
-                }
-            }
+            hitGoblin();
         } else {
-            System.out.println("You attack the goblin and MISS!");
-            MyGame.getPlayer().takeDamage(5);
-            if(!MyGame.getPlayer().isAlive()) {
-                System.out.println("You have died.");
-                Game.getInstance().getInput().getString("Press Enter to continue.");
-                MyGame.killPlayer();
-                ScreenManager.addScreen(new MainScreen());
-                exit();
-            }
+            hitByGoblin();
         }
     };
+
+    private void hitByGoblin() {
+        System.out.println("You attack the goblin and MISS! The goblin punches you.");
+        MyGame.getPlayer().takeDamage(5);
+        if(!MyGame.getPlayer().isAlive()) {
+            System.out.println("You have died.");
+            Game.getInstance().getInput().getString("Press Enter to continue.");
+            MyGame.killPlayer();
+            ScreenManager.addScreen(new MainScreen());
+            exit();
+            return;
+        }
+        Game.getInstance().getInput().getString("Press Enter to continue.");
+    }
+
+    private void hitGoblin() {
+        System.out.println("You attack the goblin and HIT!");
+        MyGame.getGoblin().setHealth(MyGame.getGoblin().getHealth() - 5);
+        if(!MyGame.getGoblin().isAlive()) {
+            System.out.println("The goblin has died.");
+            if(!MyGame.getPlayer().hasCrown()) {
+                System.out.println("You retrieve THE Gaudy Crown of Victory from the goblin's twitching corpse.");
+                MyGame.getPlayer().setHasCrown(true);
+                // goblin is not alive so hide the menu choice
+                menu.getChoiceFromLabel("Smite the goblin").setHidden(true);
+            }
+        }
+        Game.getInstance().getInput().getString("Press Enter to continue.");
+    }
 }

@@ -29,6 +29,7 @@ public class Menu {
     public void addItem(String label, MenuItemMethod theMethod, boolean hidden) {
         MenuItem item = new FunctionMenuItem(idCounter++, label, theMethod);
         item.setHidden(hidden);
+        item.setHiddenDefault(hidden);
         items.add(item);
     }
 
@@ -47,6 +48,7 @@ public class Menu {
             ScreenManager.addScreen(navToScreen);
         });
         item.setHidden(hidden);
+        item.setHiddenDefault(hidden);
         items.add(item);
     }
 
@@ -64,12 +66,18 @@ public class Menu {
         return getSelectedItemFromUser(input);
     }
 
-    public MenuItem getChoiceFromLabel(String label) {
+    public MenuItem getChoiceFromLabel(String label) throws MenuException {
         for (MenuItem item : items) {
             if(item.getLabel().equals(label)) {
                 return item;
             }
         }
         throw new MenuException("Invalid menu item requested: " + label);
+    }
+
+    public void resetMenuOnGameStart() throws MenuException {
+        for(MenuItem item : items) {
+            item.setHidden(item.getHiddenDefault());
+        }
     }
 }
