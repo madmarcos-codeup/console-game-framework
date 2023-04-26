@@ -2,6 +2,8 @@
 
 This screen is the place east of the maze entrance. It has a path leading north and west returns the player back to the entrance.
 
+Note that this screen does NOT need to implement `Resettable`, as it has no menu items that hidden/unhidden. 
+
 We will customize the `show` and `setup` methods.
 
 Below is the `show` method:

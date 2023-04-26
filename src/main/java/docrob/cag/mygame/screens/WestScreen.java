@@ -1,14 +1,13 @@
 package docrob.cag.mygame.screens;
 
 import docrob.cag.framework.menu.MenuItemMethod;
-import docrob.cag.framework.screens.Resettable;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
 import docrob.cag.mygame.MyGame;
 
-public class WestScreen extends Screen implements Resettable {
+public class WestScreen extends Screen {
     @Override
     public void setup() {
         super.setup();
@@ -22,9 +21,12 @@ public class WestScreen extends Screen implements Resettable {
         System.out.println("You are in the west part of the maze." +
                 "\nFrom here, you can go east to return to the entrance.");
 
-        if(MyGame.getGoblin().isAlive()) {
+        if (MyGame.getGoblin().isAlive()) {
             System.out.println("\nThere is a goblin here. " + MyGame.getGoblin().toString());
             menu.getItemFromLabel("Smite the goblin").setHidden(false);
+        } else {
+            // goblin is not alive so hide the menu item, just in case it was unhidden previously
+            menu.getItemFromLabel("Smite the goblin").setHidden(true);
         }
         super.show();
 
@@ -38,19 +40,6 @@ public class WestScreen extends Screen implements Resettable {
         }
     };
 
-    private void hitByGoblin() {
-        System.out.println("You attack the goblin and MISS! The goblin punches you.");
-        MyGame.getPlayer().takeDamage(5);
-        if(!MyGame.getPlayer().isAlive()) {
-            Game.getInstance().getInput().getString("You have died.\nPress Enter to continue.");
-            MyGame.killPlayer();
-            ScreenManager.addScreen(new MainScreen());
-            setReadyToExit();
-            return;
-        }
-        Game.getInstance().getInput().getString("Press Enter to continue.");
-    }
-
     private void hitGoblin() {
         System.out.println("You attack the goblin and HIT!");
         MyGame.getGoblin().setHealth(MyGame.getGoblin().getHealth() - 5);
@@ -62,6 +51,19 @@ public class WestScreen extends Screen implements Resettable {
                 // goblin is not alive so hide the menu choice
                 menu.getItemFromLabel("Smite the goblin").setHidden(true);
             }
+        }
+        Game.getInstance().getInput().getString("Press Enter to continue.");
+    }
+
+    private void hitByGoblin() {
+        System.out.println("You attack the goblin and MISS! The goblin punches you.");
+        MyGame.getPlayer().takeDamage(5);
+        if(!MyGame.getPlayer().isAlive()) {
+            Game.getInstance().getInput().getString("You have died.\nPress Enter to continue.");
+            MyGame.killPlayer();
+            ScreenManager.addScreen(new MainScreen());
+            setReadyToExit();
+            return;
         }
         Game.getInstance().getInput().getString("Press Enter to continue.");
     }

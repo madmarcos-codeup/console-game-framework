@@ -20,6 +20,7 @@ public class NorthScreen extends Screen {
         Game.getInstance().getInput().getString("Press Enter to continue.");
 
         MyGame.killPlayer();
+
         ScreenManager.addScreen(new MainScreen());
     }
 }

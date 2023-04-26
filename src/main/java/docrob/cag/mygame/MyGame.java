@@ -34,16 +34,12 @@ public class MyGame {
     }
 
     public static void initGame() {
+        Game.getInstance().addStateItem("goblin", new Goblin());
         // reset menus for all resettable screens
         ScreenManager.resetScreens();
-        // place a new goblin in the game
-        Game.getInstance().addStateItem("goblin", new Goblin());
-        // take the treasure from the player if he/she has it
-        getPlayer().setHasCrown(false);
     }
 
     public static Goblin getGoblin() {
         return Game.getInstance().getStateItem("goblin", Goblin.class);
     }
-
 }

@@ -10,7 +10,7 @@ The target audience for this framework is students who have finished a basic lev
 This project uses text blocks and enhanced switch statements, so please use at least JDK 14.
 
 ### To run via the command line:
-You can run this application in an IDE console, but it looks better in a separate terminal. In the project's top-level directory, type `run_it.sh`. 
+You can run this application in an IDE console, but it looks better in a separate terminal. In the project's top-level directory, type `run_it.sh`. If you are using Windows, then use the Linux subsystem or Git-bash to run the shell script. 
 
 ---
 

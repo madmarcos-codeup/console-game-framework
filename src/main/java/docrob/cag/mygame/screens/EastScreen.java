@@ -22,4 +22,7 @@ public class EastScreen extends Screen {
 
     }
 
+    private MenuItemMethod northStub = () -> {
+        System.out.println("TODO: go north");
+    };
 }

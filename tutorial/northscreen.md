@@ -2,6 +2,8 @@
 
 This screen will kill the player. Sounds awful, but this part of the tutorial will show you how you can force the player to restart the game.
 
+Note that this screen does NOT need to implement `Resettable`, as it has no menu items that hidden/unhidden.
+
 We will customize the `show` and `handleInput` methods.
 
 Below is the `show` method:
@@ -29,7 +31,7 @@ And here is the `handleInput` method:
 
 Notice that we are calling a method specific to our game for killing the player. At its simplest, removing the current player object from the game should remove the player object from the `Game`'s state map. We will add this and another method statically to `MyGame` for convenience. Anytime you want to kill the player, call `MyGame.killPlayer()` and add `MainScreen` to the `ScreenManager`. Anytime you want to access the player's information, call `MyGame.getPlayer()`.  
 
-The `getPlayer` method calls `Game`'s `getStateItem` method which fetches an object from the `Game`'s state hashmap. Because any `Object` can be stored in the `Game`'s hashmap, you must tell Java the data type of the object you want from the hashmap. That is the reason for the `Player.class` argument. The call to the `ScreenManager.resetGame` method clears the screen cache, so that all game screens start over with freshly initialized data.
+The `getPlayer` method calls `Game`'s `getStateItem` method which fetches an object from the `Game`'s state hashmap. Because any `Object` can be stored in the `Game`'s hashmap, you must tell Java the data type of the object you want from the hashmap. That is the reason for the `Player.class` argument. The call to the `ScreenManager.emptyCache` method clears the screen cache, so that ALL game screens start over with freshly initialized data, including the `MainMenu` screen.
 
 Add these two methods to `MyGame.java`.
 ```java
@@ -40,8 +42,10 @@ public static Player getPlayer() {
 public static void killPlayer() {
     System.out.println("Removing player " + getPlayer().getName() + "...");
     Game.getInstance().removeStateItem("player");
-    
-    ScreenManager.resetGame();
+    // emptyCache() removes ALL screens from the cache,
+    // meaning that all screens will start over with a fresh new object
+    // (e.g., all hidden menu items that were previously revealed will be hidden again)
+    ScreenManager.emptyCache();
 }
 ```
 

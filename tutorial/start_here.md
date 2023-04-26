@@ -5,14 +5,21 @@ A good way to learn how to use a tool is to jump right in and build something [s
 We will make a little maze game where you try to find the most powerful object in the Universe and return to the room where you started in order to win the game.
 
 ## Making your first screen
+
 Let's start with a welcome screen that will output some text, wait for the user to press Enter, and then navigate to the Main menu screen.
+
+First, make a package called `screens`. Organizing your code into directories provides the same benefits of organizing anything else in your life, e.g., the clothes in your closet:
+1. you can find a particular thing (or find out it is NOT there) faster
+2. you know faster where to put a new thing (e.g., a new T-shirt should go with the other T-shirts, probably towards the front of the group)
+
+All of your game's screens will go in the `screens` package. 
 
 The framework sees your game as a sequence of _Screens_. A _screen_ is like a room in a dungeon or house. So a dungeon would be a sequence of screens that the player explores. One screen can have things for the player to do, like search for treasure. It can also have connections to other screens, allowing the player to move from one room to another.
 
 Screens typically:
 1. show some descriptive text to the player (e.g., a description of the room that the player entered)
 2. present a menu of choices available to the player
-3. wait for the user to choose one of the menu items
+3. wait for the user to select one of the choices
 4. do whatever the choice involves (e.g., randomly determine if the user found some loot, take a swing at a monster, move to another room)
 
 ### Writing the code for the Welcome Screen
@@ -50,7 +57,6 @@ protected void handleInput() {
     Game.getInstance().getInput().getString("Press Enter to continue.");
 
     ScreenManager.addScreen(new MainScreen());
-    // since there is no input loop in this screen, this method will exit and the screen manager will move to the MainScreen
 }
 ```
 
