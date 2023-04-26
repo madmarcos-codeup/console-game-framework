@@ -16,6 +16,6 @@ You can run this application in an IDE console, but it looks better in a separat
 
 ### Tutorial
 
-The only documentation I have at this point is a little walkthrough, making a little game with a few rooms and an angry goblin.
+The only documentation I have at this point is a little walkthrough, making a tiny game with a few rooms and an angry goblin.
 
 [Start the tutorial](tutorial/start_here.md)
