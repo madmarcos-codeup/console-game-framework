@@ -54,19 +54,19 @@ public class Menu {
 
     public MenuItem getSelectedItemFromUser(Input input) {
         int num = Game.getInstance().getInput().getInt("Enter your choice: ");
-        // check if num is a valid menu choice
+        // check if num is a valid menu item
         for (MenuItem item : items) {
             if(item.getId() == num) {
                 return item;
             }
         }
 
-        // did not select a valid choice num so do again
+        // did not select a valid item num so do again
         System.out.print("That was not a valid choice!\n");
         return getSelectedItemFromUser(input);
     }
 
-    public MenuItem getChoiceFromLabel(String label) throws MenuException {
+    public MenuItem getItemFromLabel(String label) throws MenuException {
         for (MenuItem item : items) {
             if(item.getLabel().equals(label)) {
                 return item;

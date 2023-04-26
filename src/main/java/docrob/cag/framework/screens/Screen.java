@@ -22,7 +22,7 @@ public abstract class Screen {
         showMenuEachIteration = true;
     }
 
-    public void exit() {
+    public void setReadyToExit() {
         if(screenState != ScreenState.Exited) {
             screenState = ScreenState.ReadyToExit;
         }
@@ -67,7 +67,7 @@ public abstract class Screen {
             selected.doIt();
             // if selected item was a nav menu item then this screen will exit to move to the next screen
             if(selected instanceof NavMenuItem) {
-                this.exit();
+                this.setReadyToExit();
             }
 
             if(screenState == ScreenState.Showing && showMenuEachIteration) {

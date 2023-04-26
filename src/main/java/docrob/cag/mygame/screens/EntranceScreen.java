@@ -27,9 +27,9 @@ public class EntranceScreen extends Screen implements Resettable {
         // if player has the winning game item, then show the menu
         // else hide it in case they have come back after previously winning
         if(MyGame.getPlayer().hasCrown()) {
-            menu.getChoiceFromLabel("Win the game").setHidden(false);
+            menu.getItemFromLabel("Win the game").setHidden(false);
         } else {
-            menu.getChoiceFromLabel("Win the game").setHidden(true);
+            menu.getItemFromLabel("Win the game").setHidden(true);
         }
 
         super.show();
@@ -40,6 +40,6 @@ public class EntranceScreen extends Screen implements Resettable {
         Game.getInstance().getInput().getString("You won the game! Yay...\n\nPress Enter to continue.");
 
         ScreenManager.addScreen(new MainScreen());
-        exit();
+        setReadyToExit();
     };
 }

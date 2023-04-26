@@ -8,11 +8,11 @@ In our game, the main menu screen will present the user with options for:
 
 ## Making the Main menu screen
 
-The Main menu screen, or `MainScreen`, will display the top-level menu choices to the user, prompt the user until an appropriate selection is made, and then load the relevant screen.
+The Main menu screen, or `MainScreen`, will display the top-level menu items to the user, prompt the user until an appropriate selection is made, and then load the relevant screen.
 
 The `Screen` superclass provides menu capabilities by default, and `MainScreen` will just use those.
 
-To create the set of menu choices, override `setupMenu()`. Call the superclass method first, in case it needs to initialize some things. Next, call `menu.addItem` to add each menu item.
+To create the set of menu items, override `setupMenu()`. Call the superclass method first, in case it needs to initialize some things. Next, call `menu.addItem` to add each menu item.
 
 Menu items are typically key/value pairs, where:
 - the key is a string that is used as the menu's label.
@@ -73,7 +73,7 @@ private MenuItemMethod createPlayer = () -> {
     Player player = new Player(name);
     Game.getInstance().addStateItem("player", player);
 
-    menu.getChoiceFromLabel("Start the adventure").setHidden(false);
+    menu.getItemFromLabel("Start the adventure").setHidden(false);
 };
 ```
 
@@ -122,10 +122,8 @@ package docrob.cag.mygame.screens;
 
 import docrob.cag.framework.menu.MenuItemMethod;
 import docrob.cag.framework.screens.Screen;
-import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
-import docrob.cag.mygame.MyGame;
 import docrob.cag.mygame.characters.Player;
 
 public class MainScreen extends Screen {
@@ -145,7 +143,7 @@ public class MainScreen extends Screen {
     protected void show() {
         Player player = Game.getInstance().getStateItem("player", Player.class);
         String playerInfo = "";
-        if(player != null) {
+        if (player != null) {
             playerInfo = "\t\tPlayer: " + player.getName();
         }
         System.out.println(ConsoleColors.ANSI_CLEAR + "\nMain Screen" + playerInfo);
@@ -158,12 +156,12 @@ public class MainScreen extends Screen {
         Player player = new Player(name);
         Game.getInstance().addStateItem("player", player);
 
-        menu.getChoiceFromLabel("Start the adventure").setHidden(false);
+        menu.getItemFromLabel("Start the adventure").setHidden(false);
     };
 
     private MenuItemMethod exitProgram = () -> {
         System.out.println("Exiting main screen...");
-        exit();
+        setReadyToExit();
     };
 
     private MenuItemMethod startAdventure = () -> {

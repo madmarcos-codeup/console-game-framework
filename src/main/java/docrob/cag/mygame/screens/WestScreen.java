@@ -24,7 +24,7 @@ public class WestScreen extends Screen implements Resettable {
 
         if(MyGame.getGoblin().isAlive()) {
             System.out.println("\nThere is a goblin here. " + MyGame.getGoblin().toString());
-            menu.getChoiceFromLabel("Smite the goblin").setHidden(false);
+            menu.getItemFromLabel("Smite the goblin").setHidden(false);
         }
         super.show();
 
@@ -46,7 +46,7 @@ public class WestScreen extends Screen implements Resettable {
             Game.getInstance().getInput().getString("Press Enter to continue.");
             MyGame.killPlayer();
             ScreenManager.addScreen(new MainScreen());
-            exit();
+            setReadyToExit();
             return;
         }
         Game.getInstance().getInput().getString("Press Enter to continue.");
@@ -61,7 +61,7 @@ public class WestScreen extends Screen implements Resettable {
                 System.out.println("You retrieve THE Gaudy Crown of Victory from the goblin's twitching corpse.");
                 MyGame.getPlayer().setHasCrown(true);
                 // goblin is not alive so hide the menu choice
-                menu.getChoiceFromLabel("Smite the goblin").setHidden(true);
+                menu.getItemFromLabel("Smite the goblin").setHidden(true);
             }
         }
         Game.getInstance().getInput().getString("Press Enter to continue.");

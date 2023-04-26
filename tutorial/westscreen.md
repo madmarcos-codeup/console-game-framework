@@ -145,6 +145,7 @@ Lastly, we must add a method in `WestScreen` to attack the goblin. The method wi
 Below is the modified `WestScreen`:
 
 `WestScreen.java`
+
 ```java
 package docrob.cag.mygame.screens;
 
@@ -168,22 +169,22 @@ public class WestScreen extends Screen {
         System.out.println("You are in the west part of the maze." +
                 "\nFrom here, you can go east to return to the entrance.");
 
-        if(MyGame.getGoblin().isAlive()) {
+        if (MyGame.getGoblin().isAlive()) {
             System.out.println("\nThere is a goblin here. " + MyGame.getGoblin().toString());
-            menu.getChoiceFromLabel("Smite the goblin").setHidden(false);
+            menu.getItemFromLabel("Smite the goblin").setHidden(false);
         } else {
-            // goblin is not alive so hide the menu choice, just in case it was unhidden previously
-            menu.getChoiceFromLabel("Smite the goblin").setHidden(true);
+            // goblin is not alive so hide the menu item, just in case it was unhidden previously
+            menu.getItemFromLabel("Smite the goblin").setHidden(true);
         }
         super.show();
 
     }
 
     private MenuItemMethod attackGoblin = () -> {
-        if(Game.getInstance().getRandomInt(1, 100) <= 75) {
+        if (Game.getInstance().getRandomInt(1, 100) <= 75) {
             System.out.println("You attack the goblin and HIT!");
             MyGame.getGoblin().setHealth(MyGame.getGoblin().getHealth() - 5);
-            if(!MyGame.getGoblin().isAlive()) {
+            if (!MyGame.getGoblin().isAlive()) {
                 System.out.println("The goblin has died.");
             }
         } else {
