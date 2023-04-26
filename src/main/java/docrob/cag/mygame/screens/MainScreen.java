@@ -10,6 +10,9 @@ import docrob.cag.mygame.characters.Player;
 
 public class MainScreen extends Screen {
 
+    public MainScreen() {
+    }
+
     @Override
     public void setup() {
         super.setup();
@@ -22,7 +25,7 @@ public class MainScreen extends Screen {
     protected void show() {
         Player player = Game.getInstance().getStateItem("player", Player.class);
         String playerInfo = "";
-        if(player != null) {
+        if (player != null) {
             playerInfo = "\t\tPlayer: " + player.getName();
         }
         System.out.println(ConsoleColors.ANSI_CLEAR + "\nMain Screen" + playerInfo);

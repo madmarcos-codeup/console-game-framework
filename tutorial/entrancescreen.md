@@ -2,7 +2,9 @@
 
 This screen is the start of the adventure: the place where the player begins.
 
-The `EntranceScreen` will have east and west paths. It will also have a menu option to return to the main menu screen. The east path will lead to the `RedScreen`. The west path will lead to the `GreenScreen`. Both screens have not been made so we will stub these out. 
+The `EntranceScreen` will have east and west paths. It will also have a menu option to return to the main menu screen. The east path will lead to the `RedScreen`. The west path will lead to the `GreenScreen`. Both screens have not been made so we will stub these out.
+
+Note that one or two of our screens will implement a framework interface called `Resettable`. This is a simple tagging interface that allows the screen implementing it to have their menus reset when the adventure is about to start. This is useful if the screen has a hidden menu item that becomes revealed during the course of the adventure, but you want it to become hidden again when the adventure starts over. 
 
 We will customize the `show` and `setup` methods.
 
@@ -29,13 +31,21 @@ public void setup() {
 }
 ```
 
-Lastly, remove the `startAdventure` method from `MainScreen` and replace the following line in `MainScreen`:
+Next, add an `initGame` method to the `MyGame` class. This method handles everything that is necessary to prepare the maze before a player enters it. For now, the only thing this method will do is to have the `ScreenManager` tell all of the screens (that implement the `Resettable` interface) to reset their menus.
 ```java
-menu.addItem("Start the adventure", startAdventure, true);
+public static void initGame() {
+    // reset menus for all resettable screens
+    ScreenManager.resetScreens();
+}
 ```
-with
+
+Lastly, modify the `startAdventure` method in the `MainScreen`, replace the entire method with:
 ```java
-menu.addItem("Start the adventure", new EntranceScreen(), true);
+private MenuItemMethod startAdventure = () -> {
+    MyGame.initGame();
+    ScreenManager.addScreen(new EntranceScreen());
+    setReadyToExit();
+};
 ```
 
 Below is the complete `EntranceScreen` class. You should be able to run the game and enter the maze.
@@ -50,7 +60,7 @@ import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
 import docrob.cag.mygame.MyGame;
 
-public class EntranceScreen extends Screen {
+public class EntranceScreen extends Screen implements Resettable {
     
     @Override
     public void setup() {

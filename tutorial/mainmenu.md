@@ -40,6 +40,10 @@ private MenuItemMethod exitProgram = () -> {
 
 The `createPlayer` function prompts and receives a player name from the user and creates a new `Player` object from the game's `Player` class. The `Player` class is a simple POJO that has the game-specific info that we want for keeping track of the user playing the game. For this tutorial, it will be just the player's `name`.
 
+First, create a package called `characters`. The `Player` class will go in this package.
+
+Next, make the `Player` class using the code below:
+
 `Player.java`
 ```java
 package docrob.cag.mygame.characters;
@@ -103,7 +107,8 @@ protected void show() {
 }
 ```
 
-Finally, we need to hook up the `WelcomeScreen` to transition to then `MainScreen` after the user presses the enter key. Here is the revised `handleInput` function.
+Finally, we need to hook up the `WelcomeScreen` to transition to then `MainScreen` after the user presses the enter key. Here is the revised `handleInput` function in the `WelcomeScreen`.
+`WelcomeScreen`
 ```java
 @Override
 protected void handleInput() {
