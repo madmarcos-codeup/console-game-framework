@@ -51,17 +51,15 @@ private MenuItemMethod startAdventure = () -> {
 Below is the complete `EntranceScreen` class. You should be able to run the game and enter the maze.
 
 `EntranceScreen.java`
+
 ```java
 package docrob.cag.mygame.screens;
 
 import docrob.cag.framework.screens.Screen;
-import docrob.cag.framework.screens.ScreenManager;
-import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
-import docrob.cag.mygame.MyGame;
 
 public class EntranceScreen extends Screen implements Resettable {
-    
+
     @Override
     public void setup() {
         super.setup();

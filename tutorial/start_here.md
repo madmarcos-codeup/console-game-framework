@@ -119,12 +119,12 @@ public class WelcomeScreen extends Screen {
 ```
 
 `MyGame.java`
+
 ```java
 package docrob.cag.mygame;
 
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
-import docrob.cag.mygame.screens.WelcomeScreen;
 
 public class MyGame {
     public static void main(String[] args) {

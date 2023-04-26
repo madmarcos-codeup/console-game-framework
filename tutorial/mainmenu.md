@@ -129,7 +129,6 @@ import docrob.cag.framework.menu.MenuItemMethod;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
-import docrob.cag.mygame.characters.Player;
 
 public class MainScreen extends Screen {
 

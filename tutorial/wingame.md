@@ -92,7 +92,6 @@ import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
-import docrob.cag.mygame.MyGame;
 
 public class EntranceScreen extends Screen implements Resettable {
     @Override
@@ -112,7 +111,7 @@ public class EntranceScreen extends Screen implements Resettable {
 
         // if player has the winning game item, then show the menu
         // else hide it in case they have come back after previously winning
-        if(MyGame.getPlayer().hasCrown()) {
+        if (MyGame.getPlayer().hasCrown()) {
             menu.getItemFromLabel("Win the game").setHidden(false);
         } else {
             menu.getItemFromLabel("Win the game").setHidden(true);

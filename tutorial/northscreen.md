@@ -61,6 +61,7 @@ menu.addItem("Go north", new NorthScreen());
 Below is the complete `NorthScreen` class. You should be able to run the game and go north from the east room and be killed. Smashing!
 
 `NorthScreen.java`
+
 ```java
 package docrob.cag.mygame.screens;
 
@@ -68,7 +69,6 @@ import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.screens.ScreenManager;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
-import docrob.cag.mygame.MyGame;
 
 public class NorthScreen extends Screen {
     @Override
@@ -84,7 +84,7 @@ public class NorthScreen extends Screen {
         Game.getInstance().getInput().getString("Press Enter to continue.");
 
         MyGame.killPlayer();
-        
+
         ScreenManager.addScreen(new MainScreen());
     }
 }
