@@ -4,7 +4,7 @@ public class FunctionMenuItem extends MenuItem {
     private MenuItemMethod theMethod;
 
     public FunctionMenuItem(int id, String label, MenuItemMethod theMethod) {
-        super(id, label, false);
+        super(id, label, false, false);
         this.theMethod = theMethod;
     }
 

@@ -29,6 +29,7 @@ public class Menu {
     public void addItem(String label, MenuItemMethod theMethod, boolean hidden) {
         MenuItem item = new FunctionMenuItem(idCounter++, label, theMethod);
         item.setHidden(hidden);
+        item.setHiddenDefault(hidden);
         items.add(item);
     }
 
@@ -47,29 +48,36 @@ public class Menu {
             ScreenManager.addScreen(navToScreen);
         });
         item.setHidden(hidden);
+        item.setHiddenDefault(hidden);
         items.add(item);
     }
 
     public MenuItem getSelectedItemFromUser(Input input) {
         int num = Game.getInstance().getInput().getInt("Enter your choice: ");
-        // check if num is a valid menu choice
+        // check if num is a valid menu item
         for (MenuItem item : items) {
             if(item.getId() == num) {
                 return item;
             }
         }
 
-        // did not select a valid choice num so do again
+        // did not select a valid item num so do again
         System.out.print("That was not a valid choice!\n");
         return getSelectedItemFromUser(input);
     }
 
-    public MenuItem getChoiceFromLabel(String label) {
+    public MenuItem getItemFromLabel(String label) throws MenuException {
         for (MenuItem item : items) {
             if(item.getLabel().equals(label)) {
                 return item;
             }
         }
         throw new MenuException("Invalid menu item requested: " + label);
+    }
+
+    public void resetMenuOnGameStart() throws MenuException {
+        for(MenuItem item : items) {
+            item.setHidden(item.getHiddenDefault());
+        }
     }
 }

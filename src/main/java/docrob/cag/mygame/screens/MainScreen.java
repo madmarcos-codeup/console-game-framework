@@ -35,17 +35,17 @@ public class MainScreen extends Screen {
         Player player = new Player(name);
         Game.getInstance().addStateItem("player", player);
 
-        menu.getChoiceFromLabel("Start the adventure").setHidden(false);
+        menu.getItemFromLabel("Start the adventure").setHidden(false);
     };
 
     private MenuItemMethod exitProgram = () -> {
         System.out.println("Exiting main screen...");
-        exit();
+        setReadyToExit();
     };
 
     private MenuItemMethod startAdventure = () -> {
         MyGame.initGame();
         ScreenManager.addScreen(new EntranceScreen());
-        exit();
+        setReadyToExit();
     };
 }

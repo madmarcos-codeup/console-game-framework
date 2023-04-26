@@ -25,7 +25,7 @@ public WelcomeScreen() {
 }
 ```
 
-The welcome screen will not have a menu of choices, so we don't have to do anything with that yet. We will discuss menu setup later.
+The welcome screen will not have a menu of items/choices, so we don't have to do anything with that yet. We will discuss menu setup later.
 
 Next, override the `show()` method to display a screen-specific description:
 ```java
