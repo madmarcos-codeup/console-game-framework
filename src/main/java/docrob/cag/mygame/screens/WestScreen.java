@@ -42,8 +42,7 @@ public class WestScreen extends Screen implements Resettable {
         System.out.println("You attack the goblin and MISS! The goblin punches you.");
         MyGame.getPlayer().takeDamage(5);
         if(!MyGame.getPlayer().isAlive()) {
-            System.out.println("You have died.");
-            Game.getInstance().getInput().getString("Press Enter to continue.");
+            Game.getInstance().getInput().getString("You have died.\nPress Enter to continue.");
             MyGame.killPlayer();
             ScreenManager.addScreen(new MainScreen());
             setReadyToExit();

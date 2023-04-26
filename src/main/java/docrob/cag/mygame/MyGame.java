@@ -27,6 +27,9 @@ public class MyGame {
     public static void killPlayer() {
         System.out.println("Removing player " + getPlayer().getName() + "...");
         Game.getInstance().removeStateItem("player");
+        // emptyCache() removes ALL screens from the cache,
+        // meaning that all screens will start over with a fresh new object
+        // (e.g., all hidden menu items that were previously revealed will be hidden again)
         ScreenManager.emptyCache();
     }
 
