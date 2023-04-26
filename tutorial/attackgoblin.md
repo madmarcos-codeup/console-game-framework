@@ -19,7 +19,6 @@ import docrob.cag.framework.menu.MenuItemMethod;
 import docrob.cag.framework.screens.Screen;
 import docrob.cag.framework.state.Game;
 import docrob.cag.framework.utils.ConsoleColors;
-import docrob.cag.mygame.MyGame;
 
 public class WestScreen extends Screen {
     @Override
@@ -47,7 +46,7 @@ public class WestScreen extends Screen {
     }
 
     private MenuItemMethod attackGoblin = () -> {
-        if(Game.getInstance().getRandomInt(1, 100) <= 75) {
+        if (Game.getInstance().getRandomInt(1, 100) <= 75) {
             hitGoblin();
         } else {
             hitByGoblin();
@@ -57,7 +56,7 @@ public class WestScreen extends Screen {
     private void hitGoblin() {
         System.out.println("You hit the goblin!");
         MyGame.getGoblin().setHealth(MyGame.getGoblin().getHealth() - 5);
-        if(!MyGame.getGoblin().isAlive()) {
+        if (!MyGame.getGoblin().isAlive()) {
             System.out.println("The goblin has died.");
         }
         Game.getInstance().getInput().getString("Press Enter to continue.");
