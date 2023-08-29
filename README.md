@@ -1,7 +1,5 @@
 # DocRob's Old Fashioned Console Game Dev Framework
 
-this is a bad change
-
 ### Description 
 This project is a Java framework intended to help students practice their Java skills. The framework tries to hide some of the machinery needed for a multi-screen application, thereby allowing students to focus more on what each screen in their game is doing.
 
