@@ -64,7 +64,7 @@ Create a Goblin class in the `characters` package. Let's think through the speci
 - If the player attacks the goblin, there is a 75% chance that the player hits the goblin, and a 25% chance that the goblin hits the player
 - When the goblin dies, the player will automatically receive the treasure needed to win the game.
 
-The goblin class will be a simple POJO with an int field for its health. It will start with 10 health. If it is hit by the player, its health will drop to 5. If it is hit again, its health drops to 0 and the goblin dies. Put the following class in your `charcters` package.
+The goblin class will be a simple POJO with an `int` field for its health. It will start with 10 health. If it is hit by the player, its health will drop to 5. If it is hit again, its health drops to 0 and the goblin dies. Put the following class in your `characters` package.
 
 `Goblin.java`
 ```java
