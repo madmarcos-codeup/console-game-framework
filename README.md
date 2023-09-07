@@ -13,9 +13,10 @@ This project uses text blocks and enhanced switch statements, so please use at l
 You can run this application in an IDE console, but it looks better in a separate terminal. In the project's top-level directory, type `run_it.sh`. If you are using Windows, then use the Linux subsystem or Git-bash to run the shell script. 
 
 NOTE: to run the completed tutorial, follow these steps after cloning the project:
-1. `git fetch --all`
-2. `git checkout finished-tutorial`
-3. `./run_it.sh`
+1. `cd console-game-framework`
+2. `git fetch --all`
+3. `git checkout finished-tutorial`
+4. `./run_it.sh`
 
 ---
 
