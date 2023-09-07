@@ -2,7 +2,7 @@
 
 This screen will kill the player. Sounds awful, but this part of the tutorial will show you how you can force the player to restart the game.
 
-Note that this screen does NOT need to implement `Resettable`, as it has no menu items that hidden/unhidden.
+Note that this screen does NOT need to implement `Resettable`, as it has no menu items that are hidden/unhidden.
 
 We will customize the `show` and `handleInput` methods.
 
