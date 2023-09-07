@@ -48,7 +48,7 @@ to
 menu.addItem("Go west", new WestScreen());
 ```
 
-and remove the `westStub` method. Test your changes by running the game. You should be able to go west from the entrance, and 
+and remove the `westStub` method. Test your changes by running the game. You should be able to go west from the entrance.
 
 ---
 
